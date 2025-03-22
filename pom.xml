@@ -41,20 +41,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>jfrog</id>
-      <name>apm0011090-mvn-snapshots</name>
-      <url>https://artifact.it.att.com/artifactory/apm0011090-mvn-snapshots</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>true</uniqueVersion>
-      <id>jfrog</id>
-      <name>apm0011090-mvn-snapshots</name>
-      <url>https://artifact.it.att.com/artifactory/apm0011090-mvn-snapshots</url>
-      <layout>default</layout>
-    </snapshotRepository>
-  </distributionManagement>
+
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
