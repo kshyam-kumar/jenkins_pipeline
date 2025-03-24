@@ -1,0 +1,187 @@
+<settings>
+	<!-- If you prefer to relocate your local repository to somewhere other
+		than ~.m2/repository then uncomment the <localrepository/> tag below and
+		specify your location. <localRepository>c:/relocated/maven/repository</localRepository> -->
+		<localRepository>/var/jenkins_home/.m2/repository</localRepository>
+	<mirrors>
+		<mirror>
+			<id>att-public-group</id>
+			<mirrorOf>*</mirrorOf>
+			<url>https://artifact.it.att.com/artifactory/apm0010621-mvn-att-public-group</url>
+		</mirror>
+	</mirrors>
+ 
+	<profiles>
+		<profile>
+			<id>jfrog</id>
+			<!-- Enable snapshots for the built in central repo to direct -->
+			<!-- all requests to nexus via the mirror -->
+			<repositories>
+				<repository>
+					<id>attarch</id>
+					<url>https://artifact.it.att.com/artifactory/apm0010621-mvn-att-public-group</url>
+					<releases>
+						<enabled>true</enabled>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:in minutes</updatePolicy> -->
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:30</updatePolicy> -->
+					</snapshots>
+				</repository>
+				
+				<repository>
+					<id>csi</id>
+					<url>https://artifact.it.att.com/artifactory/csi
+					</url>
+					<releases>
+						<enabled>true</enabled>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:in minutes</updatePolicy> -->
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:30</updatePolicy> -->
+					</snapshots>
+				</repository>
+			
+				<repository>
+					<id>attrepo</id>
+					<url>https://artifact.it.att.com/artifactory/att-mvn-public-group
+					</url>
+					<releases>
+						<enabled>true</enabled>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:in minutes</updatePolicy> -->
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:30</updatePolicy> -->
+					</snapshots>
+				</repository>
+ 
+				
+				
+				<repository>
+					<id>central</id>
+					<url>http://central</url>
+					<releases>
+						<enabled>true</enabled>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:in minutes</updatePolicy> -->
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<!-- <updatePolicy>always</updatePolicy> <updatePolicy>never</updatePolicy>
+							<updatePolicy>daily</updatePolicy> <updatePolicy>interval:30</updatePolicy> -->
+					</snapshots>
+				</repository>
+				
+				<!--repository>
+					<id>camunda-bpm-ee-proxy</id>
+					<url>https://artifact.it.att.com/artifactory/apm0015547-mvn-att-public-group/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+				</repository -->
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>attrepo</id>
+					<url>https://artifact.it.att.com/artifactory/apm0010621-mvn-releases
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>csi</id>
+					<url>https://artifact.it.att.com/artifactory/apm0010621-mvn-snapshots
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>central</id>
+					<url>http://central</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+ 
+	</profiles>
+	<activeProfiles>
+		<!-- make the profile active all the time -->
+		<activeProfile>jfrog</activeProfile>
+		<!-- <activeProfile>nexus-csi</activeProfile> -->
+	</activeProfiles>
+ 
+	<pluginGroups>
+		<!-- define the sonatype plugin group, so the nexus plugins will work without
+			typing the groupId -->
+		<pluginGroup>org.sonatype.plugins</pluginGroup>
+	</pluginGroups>
+	<servers>
+		
+		
+		<server>
+			<id>att-public-group</id>
+			<username>dk9728@intl.att.com</username>
+			<password>cmVmdGtuOjAxOjE3NzIxNzU0NDE6b3pzSTNFaTdlbVM4Q3N6cE5nbGVKOGJnRm53</password>
+		</server>
+		<server>
+			<id>jfrog</id>
+			<username>${env.JFROG_USR}</username>
+			<password>${env.JFROG_PSW}</password>
+		</server>
+
+ 
+	</servers>
+ 
+</settings>
+<!-- For artifact deployment, Maven needs the distributionManagement element
+	in the pom.xml file. -->
+<!-- NOTE: DO NOT UNCOMMENT / expose the distributionManagement section below
+	in your settings.xml file. -->
+<!--distributionManagement>
+	<repository>
+		<id>jfrog</id>
+		<name>apm0015547-mvn-releases</name>
+		<url>https://artifact.it.att.com/nexus/content/repositories/apm0015547-mvn-releases</url>
+	</repository>
+	<snapshotRepository>
+		<id>jfrog</id>
+		<name>apm0015547-mvn-snapshots</name>
+		<url>https://artifact.it.att.com/nexus/content/repositories/apm0015547-mvn-snapshots</url>
+	</snapshotRepository>
+</distributionManagement> -->
